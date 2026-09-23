@@ -1,0 +1,50 @@
+# Parâmetros da varredura. As regras de conduta (README, "Conduta") vivem aqui.
+
+[janela]
+# Só roda entre inicio e fim (hora local de Brasília), qualquer dia da semana.
+inicio = 8
+fim = 20
+# Espaço mínimo entre duas varreduras. A tarefa do Windows dispara a cada 15 min
+# e o coletor decide se já é a vez; o bot muda isto com /frequencia.
+intervalo_min_minutos = 50
+# Depois de uma varredura `bloqueada`, não tenta de novo antes disto. A punição
+# da Alibaba é por IP e decai com silêncio; cutucar de hora em hora renova.
+apos_bloqueio_esperar_horas = 3
+
+[paginas]
+# Padrão quando a fonte não diz `paginas`. 20 itens por página de loja, 30 por
+# página de busca. Cada página é uma requisição, e cada loja custa mais duas
+# (aba "todos" e perfil). O que pesa no anti-bot é o volume por janela curta:
+# ~100 requisições por hora, espaçadas, rodaram dias sem punição; ~120 em dois
+# minutos foram punidas.
+loja = 3
+busca = 2
+
+[pausa]
+# Segundos entre requisições ao Goofish. Nunca paralelizar.
+min = 3.0
+max = 8.0
+
+[navegador]
+# "chrome" usa o Chrome instalado (fingerprint mais natural). O Chromium
+# empacotado do Playwright pode não abrir no Windows — ver docs/fase0.md.
+canal = "chrome"
+# Use `--no-headless` na linha de comando pra ver o navegador e depurar.
+headless = true
+
+[notificacao]
+# Telegram. Com false, a coleta roda e os avisos se acumulam sem ser enviados.
+ativo = false
+# Anúncio visto pela primeira vez.
+novos = true
+# Anúncio que baixou pelo menos esta porcentagem desde o último aviso (ou desde
+# a primeira vez que foi visto). 0 desliga.
+queda_min_pct = 10
+# Teto de mensagens por rodada; o resto fica pra próxima.
+max_por_rodada = 10
+# Aviso mais velho que isto é descartado em vez de enviado (máquina desligada
+# por dias não vira uma enxurrada de mensagens velhas).
+max_idade_horas = 48
+# Sufixo que a CDN da Alibaba entende pra servir a foto reduzida
+# (original ~144 KB → _800x800q80.jpg ~33 KB). Vazio = original.
+foto_sufixo_cdn = "_800x800q80.jpg"

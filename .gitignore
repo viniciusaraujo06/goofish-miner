@@ -1,0 +1,15 @@
+# ambiente
+.venv/
+__pycache__/
+*.pyc
+.env
+
+# dados coletados: banco, fotos e capturas da fase 0 nunca vão pro git
+data/
+
+# editores
+.idea/
+.vscode/
+
+# despejos de analise de outras sessoes
+scratchpad_*

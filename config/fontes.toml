@@ -1,0 +1,39 @@
+# O que acompanhar no Goofish: lojas (pelo userId) e buscas (por termo).
+#
+# Cada fonte pode ter o seu [filtro]; o que ela não definir vem do [filtro]
+# padrão abaixo, campo a campo. O filtro é aplicado na coleta: anúncio fora
+# dele não entra no banco nem gera aviso.
+#
+# Busque em chinês — o resultado é bem melhor do que em português ou inglês.
+# Termo latino sozinho casa com pedaço de palavra ("SARY" traz "anniversary");
+# junte a marca ("seiko SARY") ou use `incluir` pra limpar o resultado.
+#
+# Os exemplos abaixo são só exemplos: troque pelos seus.
+
+[filtro]
+preco_min = 0      # ¥; abaixo disso costuma ser peça, capa, caixa vazia
+preco_max = 0      # ¥; 0 = sem teto
+incluir = []       # pelo menos um destes no título (vazio = qualquer título)
+excluir = []       # nenhum destes no título
+
+[[busca]]
+termo = "富士 X100V"
+paginas = 2
+[busca.filtro]
+preco_min = 3000
+excluir = ["壳", "皮套", "贴膜"]   # capa, estojo, película
+
+[[busca]]
+termo = "机械键盘 客制化"
+[busca.filtro]
+preco_max = 600
+
+# Loja: o `user_id` é o `userId` da URL do perfil,
+# https://www.goofish.com/personal?userId=<ID>. Descomente e troque o ID:
+#
+# [[loja]]
+# nome = "Loja exemplo"
+# user_id = "1000000000001"
+# paginas = 3
+# [loja.filtro]
+# incluir = ["switch", "任天堂"]

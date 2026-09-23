@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "goofish-miner": {
+      "type": "stdio",
+      "command": "uv",
+      "args": ["run", "python", "-m", "goofish_miner.mcp_server"]
+    }
+  }
+}

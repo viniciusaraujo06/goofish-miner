@@ -1,0 +1,30 @@
+[project]
+name = "goofish-miner"
+version = "0.1.0"
+description = "Monitor de lojas e buscas do Goofish/Xianyu: histórico de preço, avisos no Telegram e servidor MCP"
+authors = [
+    { name = "Vinícius Araújo" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.27",
+    "mcp>=1.2",
+    "playwright>=1.62.0",
+    "tzdata>=2025.1",
+]
+
+[project.scripts]
+goofish-miner = "goofish_miner.coletor:main"
+goofish-miner-notificar = "goofish_miner.notificador:main"
+goofish-miner-telegram = "goofish_miner.telegram_bot:main"
+goofish-miner-mcp = "goofish_miner.mcp_server:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["uv_build>=0.12.10,<0.13.0"]
+build-backend = "uv_build"
